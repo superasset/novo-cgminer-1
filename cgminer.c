@@ -1721,7 +1721,7 @@ static void calc_midstate(struct work *work)
 	sha256_ctx ctx;
 
 	flip64(data32, work->data);
-	sha256_init(&ctx);
+	sha256t_init(&ctx);
 	sha256_update(&ctx, data, 64);
 	memcpy(work->midstate, ctx.h, 32);
 	endian_flip32(work->midstate, work->midstate);
@@ -3794,8 +3794,8 @@ static void regen_hash(struct work *work)
 	unsigned char hash1[32];
 
 	flip80(swap32, data32);
-	sha256(swap, 80, hash1);
-	sha256(hash1, 32, (unsigned char *)(work->hash));
+	sha256t(swap, 80, hash1);
+	sha256t(hash1, 32, (unsigned char *)(work->hash));
 }
 
 static void rebuild_hash(struct work *work)
