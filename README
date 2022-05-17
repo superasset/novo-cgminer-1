@@ -1,3 +1,29 @@
+Novo Bitcoin Miner
+
+This miner has been modified to work with Novo Bitcoin's sha256dt algorithm
+
+Compile with OpenCL enabled:
+
+./autogen.sh
+CFLAGS="-O2 -Wall -march=native" ./configure --enable-opencl
+make
+
+If you get compile errors you might also need the -fcommon flag.
+
+Run cgminer:
+
+cgminer -o stratum+tcp://pool:port -u user -p password
+
+Working kernels:
+* poclbm
+* diablo
+* phatk
+
+Select a kernel using -k:
+
+cgminer -o stratum+tcp://pool:port -u user -p password -k diablo
+
+
 This is a multi-threaded multi-pool GPU, FPGA and ASIC miner with ATI GPU
 monitoring, (over)clocking and fanspeed support for bitcoin and derivative
 coins. Do not use on multiple block chains at the same time!
